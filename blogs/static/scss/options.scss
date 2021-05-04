@@ -1,0 +1,15 @@
+.wrapper{
+	min-height: 100%;
+	overflow:hidden;
+	display: flex;
+	flex-direction: column;
+	color: $color;
+}
+.container{
+	max-width: $width;
+	margin: 0px auto;
+}
+.content{
+	flex:1 1 auto;
+	position: relative;
+}

@@ -1,0 +1,28 @@
+
+{%extends "base.html"%}
+
+{%block title%}Главная страница{%endblock%}
+{%block content%}
+	<div class="home">
+		<div class="content">
+			<div class="header">
+				<h1 class="header">Mini-Blog</h1>
+			</div>
+			<div class="info">
+				{%for post in posts%}
+						<h2><a class="Post_title" href="{% url 'post_info' pk=post.pk %}">{{post.Title}}</a></h2>
+						<p class="author">Создатель:{{post.Author}}</p>
+						<p class="date">Время создания:{{post.Date}}</p>
+				{%endfor%}
+			</div>
+			<div class="auth">
+				{% if user.is_authenticated %}
+     				<li>User: {{ user.get_username }}</li>
+     				<li><a href="{% url 'logout'%}?next={{request.path}}">Logout</a></li>
+   				{% else %}
+     				<li><a href="{% url 'login'%}?next={{request.path}}">Login</a></li>
+   				{% endif %} 
+			</div>	
+		</div>
+	</div>
+{%endblock%}
