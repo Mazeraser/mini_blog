@@ -7,7 +7,7 @@
 			<p class="blog_text">{{post.Info}}</p>
 			<span class="blog_time">{{post.Date}}</span>
 			<br>
-			<a href="" class="blog_author">{{post.Author}}</a>
+			<a href="{%url 'blogger_page' username=post.Author%}" class="blog_author">{{post.Author}}</a>
 		</div>
 	</div>
 {%endblock%}

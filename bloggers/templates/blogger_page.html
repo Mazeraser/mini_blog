@@ -1,0 +1,13 @@
+{%extends "base.html"%}
+{%block title%}Страница блогера{%endblock%}
+{%block content%}
+	<div class="user">
+		<h2 class="blogger_name">{{user.name}}</h2>
+	</div>
+	<div class="posts">	
+		{%for post in posts%}
+			<p class="Date">{{post.Date}}</p>
+			<h2 class="title"><a href="{%url 'post_info' pk=post.pk%}">{{post.Title}}</a></h2>
+		{%endfor%}
+	</div>		
+{%endblock%}
