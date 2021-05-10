@@ -2,9 +2,14 @@ from django.conf import settings
 from django.db import models
 from django.utils import timezone
 from django.urls import reverse
+from django.contrib.auth.models import User
+
 
 # Create your models here.
 
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    infouser = models.CharField(max_length=40, default=5)
 
 class Post(models.Model):
     Author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)

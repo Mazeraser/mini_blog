@@ -5,8 +5,19 @@
 {%block content%}
 	<div class="home">
 		<div class="content">
-			<div class="header">
-				<h1 class="header">Mini-Blog</h1>
+			<div class="nav">
+				<div class="auth">
+					{%for user in Users%}
+						<a href="{%url 'blogger_page'%}">{{user.user}}</a>
+					{%endfor%}
+					{% if user.is_authenticated %}
+     					<li>User: {{ user.get_username }}</li>
+     					<li><a href="{% url 'logout'%}?next={{request.path}}">Logout</a></li>
+   					{% else %}
+     					<li><a href="{% url 'login'%}?next={{request.path}}">Login</a></li>
+     					<li><a href="{% url 'register'%}?next={{request.path}}">Register</a></li>
+   					{% endif %} 
+				</div>
 			</div>
 			<div class="info">
 				{%for post in posts%}
@@ -15,15 +26,7 @@
 						<p class="date">Время создания:{{post.Date}}</p>
 				{%endfor%}
 			</div>
-			<div class="auth">
-				{% if user.is_authenticated %}
-     				<li>User: {{ user.get_username }}</li>
-     				<li><a href="{% url 'logout'%}?next={{request.path}}">Logout</a></li>
-   				{% else %}
-     				<li><a href="{% url 'login'%}?next={{request.path}}">Login</a></li>
-     				<li><a href="{% url 'register'%}?next={{request.path}}">Register</a></li>
-   				{% endif %} 
-			</div>	
+				
 		</div>
 	</div>
 {%endblock%}
