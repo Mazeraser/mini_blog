@@ -8,6 +8,9 @@
 			<span class="blog_time">{{post.Date}}</span>
 			<br>
 			<a href="{%url 'blogger_page' username=post.Author%}" class="blog_author">{{post.Author}}</a>
+			<div class="reconstruct">
+				<a href="{%url 'blog_change' pk=post.pk%}" class="change">Изменить Пост</a>
+			</div>
 		</div>
 	</div>
 {%endblock%}

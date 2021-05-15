@@ -7,11 +7,9 @@
 		<div class="content">
 			<div class="nav">
 				<div class="auth">
-					{%for user in Users%}
-						<a href="{%url 'blogger_page'%}">{{user.user}}</a>
-					{%endfor%}
 					{% if user.is_authenticated %}
-     					<li>User: {{ user.get_username }}</li>
+						<li><a href="{%url 'post_creation'%}">Опубликовать пост</a></li>
+     					<li>User: <a href="{%url 'blogger_page' username=user.get_username%}">{{ user.get_username }}</a></li>
      					<li><a href="{% url 'logout'%}?next={{request.path}}">Logout</a></li>
    					{% else %}
      					<li><a href="{% url 'login'%}?next={{request.path}}">Login</a></li>

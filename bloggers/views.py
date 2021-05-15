@@ -7,14 +7,12 @@ from django.contrib.auth import authenticate, login
 
 from django.contrib.auth.models import User
 from blogs.models import Post
-from .models import BloggerInfo
 
 from django.contrib.auth.forms import UserCreationForm
 from .forms import RegistrForm
 
 def user(request,username):
 	info_user = {
-		'user':BloggerInfo.objects.create(name=username),
 		'posts':Post.objects.filter(Author=User.objects.filter(username=username)[:1],Date__lte=timezone.now()).order_by('Date')
 	}
 	return render(request,'blogger_page.html',info_user)

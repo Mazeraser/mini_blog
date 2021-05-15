@@ -1,0 +1,11 @@
+{%extends 'base.html'%}
+{%block title%}Создание Поста{%endblock%}
+{%block content%}
+	<div class="create">
+		<form action="" method="POST">
+			{% csrf_token %}
+			{{form.as_p}}
+			<button type="submit">Опубликовать</button>
+		</form>
+	</div>
+{%endblock%}

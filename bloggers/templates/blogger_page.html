@@ -2,7 +2,7 @@
 {%block title%}Страница блогера{%endblock%}
 {%block content%}
 	<div class="user">
-		<h2 class="blogger_name">{{user.name}}</h2>
+		<h2 class="blogger_name">{{ request.user.username }}</h2>
 	</div>
 	<div class="posts">	
 		{%for post in posts%}
