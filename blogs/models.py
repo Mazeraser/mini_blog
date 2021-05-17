@@ -14,6 +14,7 @@ class Post(models.Model):
     Date = models.DateTimeField(default=timezone.now)
 
     class Meta:
+        permissions = ()
         ordering = ["-Title"]
 
     def publish(self):
