@@ -13,6 +13,24 @@
 					<a href="{%url 'blog_change' pk=post.pk%}" class="change">Изменить Пост</a>
 				</div>
 			{% endif %}
+			<div class="comm">
+				{% if user.is_authenticated %}
+					<form action="" method='POST'>
+						{%csrf_token%}
+						{{comm_form.as_p}}
+						<button type='submit'>Оставить Комментарий</button>
+					</form>
+					<div class="comments">
+						{% for comment in comments%}
+							<h2 class="creator"><a href="{%url 'blogger_page' username=comment.creator%}">{{comment.creator}}</a></h2>
+							<h4 class="date">{{comment.date}}</h4>
+							<p class="text">{{comment.text}}</p>
+						{% endfor %}
+					</div>
+				{% else %}
+					<p>Чтобы оставить комментарий необходимо <a href="{%url 'register'%}">зарегистрироваться</a> или <a href="{%url 'login'%}">войти в систему</a></p>
+				{% endif %}
+			</div>
 		</div>
 	</div>
 {%endblock%}

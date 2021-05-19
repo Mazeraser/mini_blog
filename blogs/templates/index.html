@@ -20,11 +20,10 @@
 			<div class="info">
 				{%for post in posts%}
 						<h2><a class="Post_title" href="{% url 'post_info' pk=post.pk %}">{{post.Title}}</a></h2>
-						<p class="author">Создатель:{{post.Author}}</p>
+						<p class="author">Создатель:<a href="{%url 'blogger_page' username=post.Author%}">{{post.Author}}</a></p>
 						<p class="date">Время создания:{{post.Date}}</p>
 				{%endfor%}
 			</div>
-				
 		</div>
 	</div>
 {%endblock%}

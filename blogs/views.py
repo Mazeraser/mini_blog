@@ -1,14 +1,13 @@
 from django.shortcuts import render, get_object_or_404,redirect,Http404
 from django.utils import timezone
-from .models import Post
-from .forms import PostForm
+from .models import Post,Comm
+from .forms import PostForm,Comment
 from django.contrib.auth.models import User
 
 # Create your views here.
 
 def post_new(request):
 	form = PostForm()
-	redac = 0
 	if request.method == "POST":
 		form = PostForm(request.POST)
 		if form.is_valid():
@@ -40,7 +39,6 @@ def blog_change(request,pk):
 	else:
 		form = PostForm(instance=post)
 	return render(request, 'blog/post_new.html', {'form': form})
-	# нужно сделать ещё так, чтобы показывало кто, когда и как изменил пост
 
 def home(request):
 	posts = Post.objects.filter(Date__lte=timezone.now()).order_by('Date')
@@ -49,4 +47,16 @@ def home(request):
 
 def info_blog(request, pk):
     post = get_object_or_404(Post, pk=pk)
-    return render(request, 'blog/blog_page.html', {'post': post})
+    if request.method == "POST":
+    	form = Comment(request.POST)
+    	if form.is_valid():
+    		comm = form.save(commit=False)
+    		comm.creator = request.user
+    		comm.date = timezone.now()
+    		comm.post = post.Title
+    		comm.save()
+    		return redirect('post_info', pk=post.pk)
+    else:
+    	form = Comment() 
+    comments = Comm.objects.filter(post=post.Title)
+    return render(request, 'blog/blog_page.html', {'post': post,'comm_form' : form,'comments':comments})
