@@ -1,5 +1,125 @@
-$width: 100%;
+$width: 1600px;
 $font:'Lato Regular';
-$color:black;
+$color:white;
 @import "scss/nullstyle.scss";
 @import "scss/options.scss";
+
+a{
+	color: red;
+}
+//Заголовок(ссылка на главную страницу)
+.header{
+	margin: 0 auto;
+	background-color: #f68b8b;
+	padding:10px;
+}
+.Title {
+	padding: 15px;
+	font-size: 36px;
+	color: #de5c5c;
+	font-family: Dancing Script;
+	transition-duration: 1s;
+	&:hover{
+		font-size: 42px;
+		color: red;
+		transition-duration: 1s;
+	}
+}
+
+//Главная страница
+.home{
+	height: 100%;
+}
+//Лента постов и боковое меню
+.info {
+	width: 100%;
+	background-color: #af4949;
+	padding: 10px;
+}
+//боковое меню
+.nav {
+	position: absolute;
+	margin: 0;
+	width: 15.3%;
+	background-color: gray;
+	border:3px solid #292626;
+}
+.auth {
+	padding-top: 5px;
+	li{
+		padding: 5px;
+		font-family: Open Sans;
+		list-style-type: none;
+		a{
+			color: white;
+			transition-duration: 0.5s;
+			&:hover{
+				color: green;
+				font-size: 16px;
+				transition-duration: 0.5s;
+			}
+		}
+	}
+}		
+//лента постов		
+.posts_tape{
+	display: flex;
+	flex-direction: column;
+}
+$margin: 15px;
+.post {
+	margin: $margin;
+	padding-top: $margin;
+	align-self: center;
+	border: 1px inset pink;
+	background-color: #fc5f5f;
+}
+
+.Post_title {
+	margin: $margin;
+	font-size: 26px;
+	font-family: Odibee Sans; 
+	transition-duration: 1s;
+	margin: $margin;
+	&:hover{
+		font-size: 32px;
+		color: white;
+		transition-duration: 1s;
+	}
+}
+.author {
+	margin: $margin;
+	font-size: 24px;
+	a{
+		transition-duration: 0.4s;
+		&:hover{
+			color: yellow;
+			transition-duration: 0.4s;
+		}
+	}	
+}
+.date {
+	font-size: 24px;
+	margin: $margin;
+}
+@media(max-width: 680px){
+	$width: 100%;
+	.nav{
+		position:static;
+	}
+	.nav,.posts_tape,.post{
+		width:100%;
+	}
+	.Post_title{
+		font-size: 18px;
+		&:hover{
+			font-size: 18px;
+		}
+	}
+	.author{
+		font-size: 18px;
+	}
+	.data{
+		font-size: 18px;
+	}
+}

@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
  
 class RegistrForm(forms.ModelForm):
 	email = forms.EmailField(max_length=254)
+	password = forms.CharField(widget=forms.PasswordInput())
 	class Meta:
 		model = User
 		fields = ('username','password', 'email')

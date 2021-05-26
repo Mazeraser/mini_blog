@@ -1,28 +1,32 @@
-
 {%extends "base.html"%}
+{%load static%}
 
 {%block title%}Главная страница{%endblock%}
 {%block content%}
-	<div class="home">
-		<div class="content">
-			<div class="nav">
+	<div class="home row start-xs">	
+		<div class="info col">
+			<div class="nav col col-1">			
 				<div class="auth">
 					{% if user.is_authenticated %}
 						<li><a href="{%url 'post_creation'%}">Опубликовать пост</a></li>
-     					<li>User: <a href="{%url 'blogger_page' username=user.get_username%}">{{ user.get_username }}</a></li>
-     					<li><a href="{% url 'logout'%}?next={{request.path}}">Logout</a></li>
-   					{% else %}
-     					<li><a href="{% url 'login'%}?next={{request.path}}">Login</a></li>
-     					<li><a href="{% url 'register'%}?next={{request.path}}">Register</a></li>
-   					{% endif %} 
+			     		<li>User: <a href="{%url 'blogger_page' username=user.get_username%}">{{ user.get_username }}</a></li>
+			     		<li><a href="{% url 'logout'%}?next={{request.path}}">Logout</a></li>
+			   		{% else %}
+			    		<li><a href="{% url 'login'%}?next={{request.path}}">Login</a></li>
+			    		<li><a href="{% url 'register'%}?next={{request.path}}">Register</a></li>
+			   		{% endif %} 
 				</div>
 			</div>
-			<div class="info">
-				{%for post in posts%}
-						<h2><a class="Post_title" href="{% url 'post_info' pk=post.pk %}">{{post.Title}}</a></h2>
-						<p class="author">Создатель:<a href="{%url 'blogger_page' username=post.Author%}">{{post.Author}}</a></p>
-						<p class="date">Время создания:{{post.Date}}</p>
-				{%endfor%}
+			<div class="container">
+				<div class="posts_tape">
+					{%for post in posts%}
+						<div class="post col-xl-5">
+							<h2><a class="Post_title" href="{% url 'post_info' 	pk=post.pk %}">{{post.Title}}</a></h2>
+							<p class="author">Создатель:<a href="{%url 'blogger_page' username=post.Author%}">{{post.Author}}</a></p>
+							<p class="date">Время создания:{{post.Date}}</p>
+						</div>
+					{%endfor%}
+				</div>
 			</div>
 		</div>
 	</div>

@@ -5,17 +5,30 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="{% static 'styles.css' %}">
+	<link rel="stylesheet" href="https://unpkg.com/flexboxgrid2@7.2.1/flexboxgrid2.css">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@1,300&display=swap" rel="stylesheet">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Odibee+Sans&display=swap" rel="stylesheet">
 	<title>{%block title%}{%endblock%}</title>
 </head>
 <body>
 	<div class="wrapper">
-		<div class="header">
-			<h1><a href="{%url 'Home'%}">Mini_Blog</a></h1>
-		</div>
-		{%block content%}
-			<div class="container">
+		<div class="content">
+			<div class="header row">
+				<div class="container">
+					<h1 class='Title'><a href="{%url 'Home'%}">Mini_Blog</a></h1>
+				</div>
 			</div>
-		{%endblock%}
+			{%block content%}{%endblock%}
+			<div class="footer">
+				<div class="container">
+					
+				</div>
+			</div>
+		</div>
 	</div>
 </body>
 </html>

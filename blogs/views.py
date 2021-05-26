@@ -12,7 +12,7 @@ def post_new(request):
 		form = PostForm(request.POST)
 		if form.is_valid():
 			post = form.save(commit=False)
-			post.Author = request.user
+			post.Author = request.User
 			post.Date = timezone.now()
 			post.save()
 			return redirect('post_info', pk=post.pk)
