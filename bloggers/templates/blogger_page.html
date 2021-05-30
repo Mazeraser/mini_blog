@@ -1,13 +1,19 @@
 {%extends "base.html"%}
 {%block title%}Страница блогера{%endblock%}
 {%block content%}
-	<div class="user">
-		<h2 class="blogger_name">{{ request.user.username }}</h2>
-	</div>
-	<div class="posts">	
-		{%for post in posts%}
-			<p class="Date">{{post.Date}}</p>
-			<h2 class="title"><a href="{%url 'post_info' pk=post.pk%}">{{post.Title}}</a></h2>
-		{%endfor%}
+	<div class="user_page">
+		<div class="container">
+			<div class="user row center-xs">
+				<h2 class="blogger_name">{{ user.username }}</h2>
+			</div>
+			<div class="posts_tape">	
+				{%for post in posts%}
+					<div class="post col-xl-5">
+						<h2><a class="Post_title" href="{%url 'post_info' pk=post.pk%}">{{post.Title}}</a></h2>
+						<p class="date">{{post.Date}}</p>
+					</div>
+				{%endfor%}
+			</div>
+		</div>
 	</div>		
 {%endblock%}

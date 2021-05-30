@@ -1,18 +1,20 @@
 {%extends 'base.html'%}
 {%block title%}Блог{%endblock%}
 {%block content%}
-	<div class="blog_page">
-		<div class="content">
-			<h1 class="blog_header">{{post.Title}}</h1>
-			<p class="blog_text">{{post.Info}}</p>
-			<span class="blog_time">{{post.Date}}</span>
-			<br>
-			<a href="{%url 'blogger_page' username=post.Author%}" class="blog_author">{{post.Author}}</a>
-			{% if user.is_authenticated %}
-				<div class="reconstruct">
-					<a href="{%url 'blog_change' pk=post.pk%}" class="change">Изменить Пост</a>
-				</div>
-			{% endif %}
+	<div class="blog_page ">
+		<div class="container">
+			<div class="blog">
+				<h1 class="blog_header">{{post.Title}}</h1>
+				<p class="blog_text">{{post.Info}}</p>
+				<span class="blog_time">{{post.Date}}</span>
+				<br>
+				<a href="{%url 'blogger_page' username=post.Author%}" class="blog_author">{{post.Author}}</a>
+				{% if user.is_authenticated %}
+					<div class="reconstruct">
+						<a href="{%url 'blog_change' pk=post.pk%}" class="change">Изменить Пост</a>
+					</div>
+				{% endif %}
+			</div>
 			<div class="comm">
 				{% if user.is_authenticated %}
 					<form action="" method='POST'>
@@ -22,9 +24,11 @@
 					</form>
 					<div class="comments">
 						{% for comment in comments%}
-							<h2 class="creator"><a href="{%url 'blogger_page' username=comment.creator%}">{{comment.creator}}</a></h2>
-							<h4 class="date">{{comment.date}}</h4>
-							<p class="text">{{comment.text}}</p>
+							<div class="comment">
+								<h2 class="creator"><a href="{%url 'blogger_page' username=comment.creator%}">{{comment.creator}}</a></h2>
+								<p class="text">{{comment.text}}</p>
+								<h4 class="date">{{comment.date}}</h4>
+							</div>
 						{% endfor %}
 					</div>
 				{% else %}

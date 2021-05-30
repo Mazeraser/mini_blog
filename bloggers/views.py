@@ -13,6 +13,7 @@ from .forms import RegistrForm
 
 def user(request,username):
 	info_user = {
+		'user':User.objects.get(username=username),
 		'posts':Post.objects.filter(Author=User.objects.filter(username=username)[:1],Date__lte=timezone.now()).order_by('Date')
 	}
 	return render(request,'blogger_page.html',info_user)

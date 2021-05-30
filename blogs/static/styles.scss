@@ -4,11 +4,18 @@ $color:white;
 @import "scss/nullstyle.scss";
 @import "scss/options.scss";
 
+@mixin page_block{
+	width: 100%;
+	background-color: #db6060;
+	padding: 10px;
+}
 a{
 	color: red;
 }
+
 //Заголовок(ссылка на главную страницу)
 .header{
+	height: 10%;
 	margin: 0 auto;
 	background-color: #f68b8b;
 	padding:10px;
@@ -28,13 +35,12 @@ a{
 
 //Главная страница
 .home{
-	height: 100%;
+	min-height: 100%;
+	flex-grow: 3;
 }
 //Лента постов и боковое меню
 .info {
-	width: 100%;
-	background-color: #af4949;
-	padding: 10px;
+	@include page_block;
 }
 //боковое меню
 .nav {
@@ -110,16 +116,231 @@ $margin: 15px;
 	.nav,.posts_tape,.post{
 		width:100%;
 	}
-	.Post_title{
-		font-size: 18px;
-		&:hover{
-			font-size: 18px;
-		}
-	}
 	.author{
 		font-size: 18px;
 	}
 	.data{
 		font-size: 18px;
+	}
+}
+
+//Страница блога
+.blog_page {
+	min-height: 100%;
+	position: relative;
+	@include page_block;
+}
+//Информация блога
+.blog{
+	padding: 5px;
+	border: 1px #8f4c4c solid;
+	display: flex;
+	flex-direction: column;
+}
+.blog_header {
+	margin: 0 auto;
+	padding: 5px;
+	text-align: center;
+	background-color: #ed9fb0;
+	border: solid 2px#b66ac7;
+	font-size: 48px;
+	color: #fa7070;
+	transition-duration: 0.5s;
+	font-family: PT Sans Narrow;
+	&:hover{
+		color: #db6060;
+		transition-duration: 0.5s;
+	}
+}
+.blog_text {
+	padding: 5px;
+	margin: 10px;
+	font-size: 24px;
+	border: solid 1px black;
+
+}
+.blog_author {
+	align-self:flex-end;
+	margin: 5px;
+	font-size: 36px;
+	transition-duration: 0.4s;
+	&:hover{
+		color: #981f1f;
+		transition-duration: 0.4s;
+	}
+}
+.blog_time {
+	align-self: flex-end;
+	font-size: 23px;
+	color: #a19696;
+}
+//Редактировать блог
+.reconstruct {
+	align-self: flex-end;
+}
+.change {
+	font-size: 18px;
+	transition-duration: 0.5s;
+	&:hover{
+		color:#b50000;
+		transition-duration: 0.5s;
+	}
+}
+//Написание комментария
+.comm {
+	display: flex;
+	flex-direction: column;
+	position: relative;
+	margin: 10px;
+	form{
+		border: 5px #e89191 groove;
+		textarea{
+			max-width: 360px;
+			height: 45px;
+		}
+		button{
+			position: absolute;
+			top:10px;
+			right: 10px;
+			align-content:flex-end;
+			background-color: #c35555;
+			padding: 10px;
+			border-radius: 5px;
+			transition-duration: 0.5s;
+			&:hover{
+				background-color: #db7c7c;
+				transition-duration: 0.5s;
+			}
+		}
+		&:focus{
+			border: 5px #e79e9e groove;
+		}
+	}
+}
+//Комментарии
+.comments {
+	margin: 10px;
+}
+.comment{
+	margin: 5px;
+	padding: 5px;
+	border:solid 3px #874242;
+}
+.creator {
+	padding-bottom: 10px;
+	margin: 10px;
+	border-bottom: 1px solid #874242;
+	a{
+		font-size: 26px;
+		transition-duration: 0.5s;
+		color: #9a1e1e;
+		&:hover{
+			color: #b96e6e;
+			transition-duration: 0.5s;
+		}
+	}	
+}
+.text {
+	font-size: 16px;
+	margin: 10px;
+	padding-bottom: 10px;
+	border-bottom: 1px solid #874242;
+}
+.date {}
+
+@media(max-width: 780px){
+	.comm{
+		textarea{
+			width: 160px;
+		}
+		button{
+			padding: 5px;
+		}
+	}
+}
+@media(max-width: 480px){
+	.Post_title{
+		font-size: 18px;
+	}
+	.blog_header{
+		font-size: 24px;
+	}
+	.comm{
+		button{}
+		form{
+			position: relative;
+			height: 110px;
+			textarea{
+				position: absolute;
+				bottom: 0px;
+			}
+		}
+	}
+}
+
+//Страница пользователя
+.user_page{
+	min-height: 100%;
+	width: 100%;
+	background-color: #db6060;
+	padding: 10px;
+}
+.user{}
+.blogger_name{
+	font-size: 36px;
+	font-family: Limelight;
+}
+
+//Создание поста
+.create{
+	min-height: 80%;
+	width: 100%;
+	background-color: #db6060;
+	padding: 10px;
+}
+form{
+	p{
+		margin: 10px;
+		max-width: 50%;
+	}
+	button{
+		background-color: #c35555;
+		padding: 10px;
+		border-radius: 5px;
+		transition-duration: 0.5s;
+		&:hover{
+			background-color: #db7c7c;
+			transition-duration: 0.5s;
+		}
+	}
+}
+
+//Подвал
+.footer{
+	display: flex;
+	position: relative;
+	height: 100px;
+	background-color: #914545;
+}
+.toheader{
+	position: absolute;
+	top: 50%;
+}
+
+//Регистрация\логин
+.login,.regist{
+	width: 100%;
+	background-color: #db6060;
+	padding: 10px;
+	input{
+		max-width: 50%;
+		background-color: #c35555;
+		padding: 10px;
+		border-radius: 5px;
+		transition-duration: 0.5s;
+		&:hover{
+			background-color: #db7c7c;
+			transition-duration: 0.5s;
+		}
 	}
 }
